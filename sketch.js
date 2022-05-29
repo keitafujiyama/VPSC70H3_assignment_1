@@ -4,6 +4,7 @@ let _count = 0;
 let _font;
 let _green;
 let _height;
+let _min;
 let _minute;
 let _rate = 60;
 let _red;
@@ -23,10 +24,21 @@ function setup() {
   _second = second();
   _width = windowWidth;
   
+  _min = min(_height, _width);
+  
+  print('height: ' + _height + '  width: ' + _width + ' (' + _second + ')');
+  
   background('white');
   createCanvas(_width, _height);
   
-  print('height: ' + _height + '  width: ' + _width + ' (' + _second + ')');
+  fill('black');
+  noStroke();
+  textAlign(CENTER, CENTER);
+  textFont(_font);
+  textSize(_min * 0.025);
+  textStyle(BOLD);
+      
+  text('give me a sec...', _width * 0.5, _height * 0.5);
   
   settingValue();
 }
@@ -49,10 +61,10 @@ function draw() {
       noStroke();
       textAlign(CENTER, CENTER);
       textFont(_font);
-      textSize(min(_height, _width) / 3);
+      textSize(_min / 3);
       textStyle(BOLD);
       
-      text(_minute < 10 ? '0' + _minute : _minute, _width * 0.5, _height * 0.45);
+      text(_minute < 10 ? '0' + _minute : _minute, _width * 0.5, _height * 0.5);
     }
   }
   
